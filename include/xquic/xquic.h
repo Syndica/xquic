@@ -1121,13 +1121,13 @@ typedef struct xqc_engine_callback_s {
 
 
 typedef struct xqc_engine_ssl_config_s {
-    char       *private_key_file;           /* For server */
-    char       *cert_file;                  /* For server */
+    const char *private_key_file;           /* For server */
+    const char *cert_file;                  /* For server */
     const char *ciphers;
-    char       *groups;
+    const char *groups;
 
     uint32_t    session_timeout;            /* Session lifetime in second */
-    char       *session_ticket_key_data;    /* For server */
+    const char  *session_ticket_key_data;    /* For server */
     size_t      session_ticket_key_len;     /* For server */
 
 } xqc_engine_ssl_config_t;
