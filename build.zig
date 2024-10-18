@@ -33,6 +33,8 @@ pub fn build(b: *std.Build) !void {
     xquic.addIncludePath(b.path("include"));
     xquic.addIncludePath(b.path("."));
     xquic.addIncludePath(boringssl.path("vendor/include"));
+    xquic.linkLibrary(boringssl.artifact("ssl"));
+    xquic.linkLibrary(boringssl.artifact("crypto"));
 
     xquic.addCSourceFiles(.{
         .files = &.{
