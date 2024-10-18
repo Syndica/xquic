@@ -11,6 +11,20 @@ pub fn build(b: *std.Build) !void {
     });
     b.installArtifact(xquic);
 
+    const translate_c = b.addTranslateC(.{
+        .root_source_file = b.path("include/xquic/xquic.h"),
+        .target = target,
+        .optimize = optimize,
+    });
+    const mod = b.addModule("xquic", .{
+        .root_source_file = translate_c.getOutput(),
+        .target = target,
+        .optimize = optimize,
+        .link_libc = true,
+        .link_libcpp = true,
+    });
+    mod.linkLibrary(xquic);
+
     const boringssl = b.dependency("boringssl", .{
         .target = target,
         .optimize = optimize,
