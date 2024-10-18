@@ -1,0 +1,12 @@
+.{
+    .name = "xquic",
+    .minimum_zig_version = "0.13.0",
+    .version = "0.1.0",
+    .dependencies = .{
+        .boringssl = .{
+            .url = "https://github.com/Syndica/boringssl-zig/archive/ee2f3d26282436cdd19e485817251df44474d306.tar.gz",
+            .hash = "1220d96d06282ac8fa9a3a9e0f35a7459e14a248199cbccca00865453217f3cea673",
+        },
+    },
+    .paths = .{""},
+}
