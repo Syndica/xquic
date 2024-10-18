@@ -79,6 +79,18 @@ pub fn build(b: *std.Build) !void {
             "src/common/utils/ringmem/xqc_ring_mem.c",
             "src/common/utils/2d_hash/xqc_2d_hash_table.c",
             "src/common/utils/var_buf/xqc_var_buf.c",
+            "src/tls/xqc_hkdf.c",
+            "src/tls/xqc_null_crypto.c",
+            "src/tls/xqc_crypto.c",
+            "src/tls/xqc_tls_ctx.c",
+            "src/tls/xqc_tls.c",
+            "src/tls/boringssl/xqc_hkdf_impl.c",
+            "src/tls/boringssl/xqc_crypto_impl.c",
+            "src/tls/boringssl/xqc_ssl_if_impl.c",
+            "src/congestion_control/xqc_cubic.c",
+            "src/congestion_control/xqc_bbr.c",
+            "src/congestion_control/xqc_window_filter.c",
+            "src/congestion_control/xqc_sample.c",
         },
     });
 }
