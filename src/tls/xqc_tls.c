@@ -364,9 +364,8 @@ fail:
 
 /* try to get transport parameter bytes from ssl and notify to Transport layer */
 void
-xqc_tls_process_trans_param(xqc_tls_t *tls)
+xqc_tls_process_trans_param(xqc_tls_t *tls, const uint8_t *peer_tp)
 {
-    const uint8_t *peer_tp;
     size_t tp_len = 0;
 
     if (tls->flag & XQC_TLS_FLAG_TRANSPORT_PARAM_RCVD) {
@@ -1151,9 +1150,10 @@ xqc_tls_set_read_secret(SSL *ssl, enum ssl_encryption_level_t level,
 {
     xqc_int_t ret;
     xqc_tls_t *tls = SSL_get_app_data(ssl);
+    uint8_t peer_tp;
 
     /* try to process transport parameter if ssl parsed the quic_transport_params extension */
-    xqc_tls_process_trans_param(tls);
+    xqc_tls_process_trans_param(tls, &peer_tp);
 
     /* create crypto instance if not created */
     if (NULL == tls->crypto[level]) {
@@ -1194,9 +1194,10 @@ xqc_tls_set_write_secret(SSL *ssl, enum ssl_encryption_level_t level,
 {
     xqc_int_t ret;
     xqc_tls_t *tls = SSL_get_app_data(ssl);
+    uint8_t peer_tp;
 
     /* try to process transport parameter if ssl parsed the quic_transport_params extension */
-    xqc_tls_process_trans_param(tls);
+    xqc_tls_process_trans_param(tls, &peer_tp);
 
     /* create crypto instance if not created */
     if (NULL == tls->crypto[level]) {
